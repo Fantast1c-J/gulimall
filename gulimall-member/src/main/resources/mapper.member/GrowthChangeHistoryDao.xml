@@ -12,6 +12,4 @@
         <result property="note" column="note"/>
         <result property="sourceType" column="source_type"/>
     </resultMap>
-
-
 </mapper>

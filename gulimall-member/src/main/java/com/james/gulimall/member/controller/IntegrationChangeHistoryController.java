@@ -1,23 +1,29 @@
 package com.james.gulimall.member.controller;
 
-import com.james.gulimall.common.utils.PageUtils;
-import com.james.gulimall.common.utils.R;
-import com.james.gulimall.member.entity.IntegrationChangeHistoryEntity;
-import com.james.gulimall.member.service.IntegrationChangeHistoryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.Arrays;
 import java.util.Map;
+
+//import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.james.gulimall.member.entity.IntegrationChangeHistoryEntity;
+import com.james.gulimall.member.service.IntegrationChangeHistoryService;
+import com.james.gulimall.common.utils.PageUtils;
+import com.james.gulimall.common.utils.R;
 
 
 
 /**
  * 积分变化历史记录
  *
- * @author 夏沫止水
- * @email HeJieLin@gulimall.com
- * @date 2020-05-22 19:42:06
+ * @author James
+ * @email James@gmail.com
+ * @date 2025-09-23 20:46:22
  */
 @RestController
 @RequestMapping("member/integrationchangehistory")
@@ -29,7 +35,7 @@ public class IntegrationChangeHistoryController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("mapper.member:integrationchangehistory:list")
+    //@RequiresPermissions("member:integrationchangehistory:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = integrationChangeHistoryService.queryPage(params);
 
@@ -41,7 +47,7 @@ public class IntegrationChangeHistoryController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("mapper.member:integrationchangehistory:info")
+    //@RequiresPermissions("member:integrationchangehistory:info")
     public R info(@PathVariable("id") Long id){
 		IntegrationChangeHistoryEntity integrationChangeHistory = integrationChangeHistoryService.getById(id);
 
@@ -52,7 +58,7 @@ public class IntegrationChangeHistoryController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("mapper.member:integrationchangehistory:save")
+    //@RequiresPermissions("member:integrationchangehistory:save")
     public R save(@RequestBody IntegrationChangeHistoryEntity integrationChangeHistory){
 		integrationChangeHistoryService.save(integrationChangeHistory);
 
@@ -63,7 +69,7 @@ public class IntegrationChangeHistoryController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("mapper.member:integrationchangehistory:update")
+    //@RequiresPermissions("member:integrationchangehistory:update")
     public R update(@RequestBody IntegrationChangeHistoryEntity integrationChangeHistory){
 		integrationChangeHistoryService.updateById(integrationChangeHistory);
 
@@ -74,7 +80,7 @@ public class IntegrationChangeHistoryController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("mapper.member:integrationchangehistory:delete")
+    //@RequiresPermissions("member:integrationchangehistory:delete")
     public R delete(@RequestBody Long[] ids){
 		integrationChangeHistoryService.removeByIds(Arrays.asList(ids));
 

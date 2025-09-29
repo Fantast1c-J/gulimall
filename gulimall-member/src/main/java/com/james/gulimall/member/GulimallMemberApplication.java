@@ -3,21 +3,13 @@ package com.james.gulimall.member;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
-/**
- * 1、spring-session依赖
- * 2、spring-session配置
- * 3、LoginInterceptor拦截器
- */
-
-@EnableRedisHttpSession
-@EnableDiscoveryClient
 @SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients(basePackages = "com.james.gulimall.member.feign")
 public class GulimallMemberApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(GulimallMemberApplication.class, args);
     }
-
 }

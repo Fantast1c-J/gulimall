@@ -1,23 +1,29 @@
 package com.james.gulimall.member.controller;
 
-import com.james.gulimall.common.utils.PageUtils;
-import com.james.gulimall.common.utils.R;
-import com.james.gulimall.member.entity.MemberLoginLogEntity;
-import com.james.gulimall.member.service.MemberLoginLogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.Arrays;
 import java.util.Map;
+
+//import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.james.gulimall.member.entity.MemberLoginLogEntity;
+import com.james.gulimall.member.service.MemberLoginLogService;
+import com.james.gulimall.common.utils.PageUtils;
+import com.james.gulimall.common.utils.R;
 
 
 
 /**
  * 会员登录记录
  *
- * @author 夏沫止水
- * @email HeJieLin@gulimall.com
- * @date 2020-05-22 19:42:06
+ * @author James
+ * @email James@gmail.com
+ * @date 2025-09-23 20:46:22
  */
 @RestController
 @RequestMapping("member/memberloginlog")
@@ -29,7 +35,7 @@ public class MemberLoginLogController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("mapper.member:memberloginlog:list")
+    //@RequiresPermissions("member:memberloginlog:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = memberLoginLogService.queryPage(params);
 
@@ -41,7 +47,7 @@ public class MemberLoginLogController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("mapper.member:memberloginlog:info")
+    //@RequiresPermissions("member:memberloginlog:info")
     public R info(@PathVariable("id") Long id){
 		MemberLoginLogEntity memberLoginLog = memberLoginLogService.getById(id);
 
@@ -52,7 +58,7 @@ public class MemberLoginLogController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("mapper.member:memberloginlog:save")
+    //@RequiresPermissions("member:memberloginlog:save")
     public R save(@RequestBody MemberLoginLogEntity memberLoginLog){
 		memberLoginLogService.save(memberLoginLog);
 
@@ -63,7 +69,7 @@ public class MemberLoginLogController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("mapper.member:memberloginlog:update")
+    //@RequiresPermissions("member:memberloginlog:update")
     public R update(@RequestBody MemberLoginLogEntity memberLoginLog){
 		memberLoginLogService.updateById(memberLoginLog);
 
@@ -74,7 +80,7 @@ public class MemberLoginLogController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("mapper.member:memberloginlog:delete")
+    //@RequiresPermissions("member:memberloginlog:delete")
     public R delete(@RequestBody Long[] ids){
 		memberLoginLogService.removeByIds(Arrays.asList(ids));
 

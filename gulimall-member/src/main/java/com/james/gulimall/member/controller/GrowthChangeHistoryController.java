@@ -1,7 +1,6 @@
 package com.james.gulimall.member.controller;
 
 import com.james.gulimall.common.utils.PageUtils;
-
 import com.james.gulimall.common.utils.R;
 import com.james.gulimall.member.entity.GrowthChangeHistoryEntity;
 import com.james.gulimall.member.service.GrowthChangeHistoryService;
@@ -16,9 +15,9 @@ import java.util.Map;
 /**
  * 成长值变化历史记录
  *
- * @author 夏沫止水
- * @email HeJieLin@gulimall.com
- * @date 2020-05-22 19:42:06
+ * @author James
+ * @email James@gmail.com
+ * @date 2025-09-23 20:46:22
  */
 @RestController
 @RequestMapping("member/growthchangehistory")
@@ -30,7 +29,7 @@ public class GrowthChangeHistoryController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("mapper.member:growthchangehistory:list")
+    //@RequiresPermissions("member:growthchangehistory:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = growthChangeHistoryService.queryPage(params);
 
@@ -42,9 +41,10 @@ public class GrowthChangeHistoryController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("mapper.member:growthchangehistory:info")
+    //@RequiresPermissions("member:growthchangehistory:info")
     public R info(@PathVariable("id") Long id){
 		GrowthChangeHistoryEntity growthChangeHistory = growthChangeHistoryService.getById(id);
+
         return R.ok().put("growthChangeHistory", growthChangeHistory);
     }
 
@@ -52,7 +52,7 @@ public class GrowthChangeHistoryController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("mapper.member:growthchangehistory:save")
+    //@RequiresPermissions("member:growthchangehistory:save")
     public R save(@RequestBody GrowthChangeHistoryEntity growthChangeHistory){
 		growthChangeHistoryService.save(growthChangeHistory);
 
@@ -63,7 +63,7 @@ public class GrowthChangeHistoryController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("mapper.member:growthchangehistory:update")
+    //@RequiresPermissions("member:growthchangehistory:update")
     public R update(@RequestBody GrowthChangeHistoryEntity growthChangeHistory){
 		growthChangeHistoryService.updateById(growthChangeHistory);
 
@@ -74,7 +74,7 @@ public class GrowthChangeHistoryController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("mapper.member:growthchangehistory:delete")
+    //@RequiresPermissions("member:growthchangehistory:delete")
     public R delete(@RequestBody Long[] ids){
 		growthChangeHistoryService.removeByIds(Arrays.asList(ids));
 
