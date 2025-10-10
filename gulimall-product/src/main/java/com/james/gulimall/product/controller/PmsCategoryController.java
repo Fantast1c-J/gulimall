@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
-
 
 
 /**
@@ -20,8 +20,9 @@ import java.util.Map;
  * @date 2025-09-23 20:48:18
  */
 @RestController
-@RequestMapping("product/pmscategory")
+@RequestMapping("product/category")
 public class PmsCategoryController {
+
     @Autowired
     private PmsCategoryService pmsCategoryService;
 
@@ -29,13 +30,18 @@ public class PmsCategoryController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("product:pmscategory:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = pmsCategoryService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
+    @RequestMapping("/list/tree")
+    public R list(){
+
+        List<PmsCategoryEntity> entities  = pmsCategoryService.selectWithTree();
+
+        return R.ok().put("data", entities);
+    }
 
     /**
      * 信息
@@ -76,6 +82,7 @@ public class PmsCategoryController {
     @RequestMapping("/delete")
     //@RequiresPermissions("product:pmscategory:delete")
     public R delete(@RequestBody Long[] catIds){
+        //todo 做是否被使用判断
 		pmsCategoryService.removeByIds(Arrays.asList(catIds));
 
         return R.ok();

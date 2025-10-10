@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 119d4f66-abce-43a5-872f-57d1b305b156
+        group: dev
+        ext-config[0]:
+          data-id: datasource.yml
+          group: dev
+          refresh: true
+        ext-config[1]:
+          data-id: mybatis.yml
+          group: dev
+          refresh: true
